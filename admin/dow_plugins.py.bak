@@ -1,0 +1,63 @@
+"""
+处理DOW框架插件的模块
+"""
+import os
+import sys
+import logging
+from pathlib import Path
+
+# 设置日志
+logger = logging.getLogger("dow_plugins")
+
+def get_dow_plugins():
+    """获取DOW框架的插件列表"""
+    try:
+        # 尝试导入DOW框架的插件管理器
+        dow_path = os.path.abspath("dow")
+        if dow_path not in sys.path:
+            sys.path.insert(0, dow_path)
+            
+        # 检查DOW框架是否存在
+        if not os.path.exists("dow/plugins/plugin_manager.py"):
+            logger.warning("DOW框架不存在")
+            return []
+        
+        try:
+            # 导入DOW框架的插件管理器
+            from dow.plugins.plugin_manager import PluginManager
+            
+            # 获取插件管理器实例
+            plugin_manager = PluginManager()
+            
+            # 获取插件列表
+            plugins = plugin_manager.list_plugins()
+            
+            # 将插件转换为前端可用的格式
+            plugins_info = []
+            for name, plugin in plugins.items():
+                # 只添加非隐藏的插件
+                if not hasattr(plugin, 'hidden') or not plugin.hidden:
+                    plugin_info = {
+                        "id": name,
+                        "name": plugin.name if hasattr(plugin, 'name') else name,
+                        "enabled": plugin.enabled if hasattr(plugin, 'enabled') else False,
+                        "description": plugin.desc if hasattr(plugin, 'desc') else "",
+                        "author": plugin.author if hasattr(plugin, 'author') else "",
+                        "version": plugin.version if hasattr(plugin, 'version') else "1.0",
+                        "path": plugin.path if hasattr(plugin, 'path') else "",
+                        "framework": "dow"  # 标记为DOW框架插件
+                    }
+                    plugins_info.append(plugin_info)
+            
+            logger.info(f"成功获取DOW框架插件: {len(plugins_info)}个")
+            return plugins_info
+            
+        except ImportError as e:
+            logger.error(f"导入DOW插件管理器失败: {e}")
+            return []
+        except Exception as e:
+            logger.error(f"获取DOW插件列表失败: {e}")
+            return []
+    except Exception as e:
+        logger.error(f"获取DOW插件信息失败: {e}")
+        return [] 

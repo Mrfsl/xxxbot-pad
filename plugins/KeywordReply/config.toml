@@ -1,0 +1,25 @@
+[basic]
+enable = true
+priority = 50
+
+[apiflash]
+# 从 https://apiflash.com/ 获取API Key
+api_key = ""
+
+[puppeteer]
+# 自己服务器搭建的截图服务
+puppeteer_screenshot_api = "http://47.108.xxx.xxx:3001/screenshot"
+
+[keywords]
+# 普通文本回复
+"帮助" = "不帮不帮~"
+"咕咕咕" = "朱颈斑鸠永远是我最好吃的朋友！!"
+"查询" = "关键词包括：日程、打工日程、活动比赛、装备、祭典"
+
+# 网页截图回复（需要截图的网页url）
+"日程" = "https://splatoon3.ink"
+"打工日程" = "https://splatoon3.ink/salmonrun"
+"活动比赛" = "https://splatoon3.ink/challenges"
+"装备" = "https://splatoon3.ink/gear"
+"祭典" = "https://splatoon3.ink/splatfests"
+

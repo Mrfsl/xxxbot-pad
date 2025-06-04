@@ -1,0 +1,5 @@
+[BiliSearchPlugin]
+enable = true
+commands = ["B站"]  # 注意结尾空格
+api_url = "https://www.hhlqilongzhu.cn/api/sp_jx/bilbil/api.php"
+play_command = "视频" # 播放命令, 注意结尾空格

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "DOWChatBot",
+    "name": "DOW聊天机器人",
+    "enabled": true,
+    "description": "DOW框架下的聊天机器人插件",
+    "author": "DOW团队",
+    "version": "1.0.0",
+    "path": "dow/plugins/chat_bot",
+    "framework": "dow"
+  },
+  {
+    "id": "DOWEventHandler",
+    "name": "DOW事件处理器",
+    "enabled": true,
+    "description": "处理DOW框架的各种事件",
+    "author": "DOW团队",
+    "version": "1.1.0",
+    "path": "dow/plugins/event_handler",
+    "framework": "dow"
+  },
+  {
+    "id": "DOWDataSync",
+    "name": "DOW数据同步",
+    "enabled": false,
+    "description": "同步DOW框架的数据到云端",
+    "author": "DOW团队",
+    "version": "0.9.0",
+    "path": "dow/plugins/data_sync",
+    "framework": "dow"
+  }
+]

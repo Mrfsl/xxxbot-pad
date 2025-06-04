@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}关于 - XXXBot{% endblock %}
+
+{% block page_title %}关于 XXXBot 项目{% endblock %}
+
+{% block page_subtitle_content %}
+<p class="text-muted mb-0">项目详情、功能介绍与开发指南</p>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-section {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+    }
+    .about-section h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #343a40;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .about-section h3 {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #495057;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .about-section h4 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #007bff; /* Bootstrap primary blue for accent */
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .about-section p, 
+    .about-section li {
+        line-height: 1.6;
+        color: #495057;
+    }
+    .about-section ul, 
+    .about-section ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .about-section code {
+        background-color: #f8f9fa;
+        padding: 0.2em 0.4em;
+        margin: 0;
+        font-size: 85%;
+        border-radius: 3px;
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .about-section pre {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-size: 0.9em;
+    }
+    .about-section pre code {
+        padding: 0;
+        background-color: transparent;
+        border-radius: 0;
+    }
+    .about-section blockquote {
+        border-left: 4px solid #007bff;
+        padding-left: 1rem;
+        margin-left: 0;
+        color: #6c757d;
+        font-style: italic;
+    }
+    .about-section table {
+        width: 100%;
+        margin-bottom: 1rem;
+        border-collapse: collapse;
+    }
+    .about-section th, 
+    .about-section td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border: 1px solid #dee2e6;
+    }
+    .about-section th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+    }
+    .about-section img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    /* Tab navigation for about page */
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: #fff;
+        background-color: #007bff;
+    }
+    .nav-pills .nav-link {
+        color: #007bff;
+        border: 1px solid #007bff;
+        margin-right: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    .nav-pills .nav-link:hover:not(.active) {
+        background-color: #e9ecef;
+    }
+    .tab-content > .tab-pane {
+        padding-top: 1.5rem;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-md-4 py-4">
+
+    <ul class="nav nav-pills mb-4" id="aboutTab" role="tablist" data-aos="fade-up">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="project-readme-tab" data-bs-toggle="pill" data-bs-target="#project-readme" type="button" role="tab" aria-controls="project-readme" aria-selected="true">
+                <i class="bi bi-info-circle-fill me-2"></i>项目总述 (README)
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="image-recognition-tab" data-bs-toggle="pill" data-bs-target="#image-recognition" type="button" role="tab" aria-controls="image-recognition" aria-selected="false">
+                <i class="bi bi-image-alt me-2"></i>引用图片识别功能
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="plugins-readme-tab" data-bs-toggle="pill" data-bs-target="#plugins-readme" type="button" role="tab" aria-controls="plugins-readme" aria-selected="false">
+                <i class="bi bi-plug-fill me-2"></i>插件开发指南
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="aboutTabContent">
+        <div class="tab-pane fade show active" id="project-readme" role="tabpanel" aria-labelledby="project-readme-tab" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-section">
+                <h2>项目总述 (README.md)</h2>
+                {% if readme_content_html %}
+                    {{ readme_content_html | safe }}
+                {% else %}
+                    <p class="text-muted"><em>项目概览内容未能加载。请确保后端已正确传递 <code>readme_content_html</code>。</em></p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="image-recognition" role="tabpanel" aria-labelledby="image-recognition-tab" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-section">
+                <h2>引用图片识别功能说明</h2>
+                {% if image_recognition_html %}
+                    {{ image_recognition_html | safe }}
+                {% else %}
+                    <p class="text-muted"><em>引用图片识别功能说明内容未能加载。请确保后端已正确传递 <code>image_recognition_html</code>。</em></p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="plugins-readme" role="tabpanel" aria-labelledby="plugins-readme-tab" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-section">
+                <h2>插件开发指南 (plugins/README.md)</h2>
+                {% if plugins_readme_html %}
+                    {{ plugins_readme_html | safe }}
+                {% else %}
+                    <p class="text-muted"><em>插件开发指南内容未能加载。请确保后端已正确传递 <code>plugins_readme_html</code>。</em></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %} 
